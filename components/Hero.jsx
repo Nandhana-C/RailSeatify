@@ -1,9 +1,14 @@
 import Image from 'next/image'
 import React from 'react';
 import HeroImg from '../assets/HeroImg.png';
+import { useAuth } from '../backend/useAuth';
+// import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+// import { auth, db } from "../backend/firebase";
 
 function Hero() {
   
+const { onSignin } = useAuth();
+// 
   return (
    <section className="bg-white text-black md:mx-10">
 	<div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
@@ -15,7 +20,12 @@ function Hero() {
 				<br className="hidden md:inline lg:hidden"/>Ut enim ad minim veniam, quis nostrud exercitation 
 			</p>
 			<div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-				<button  className="px-8 py-3 text-lg font-semibold rounded border border-b-2 shadow-md text-[#007fff] hover:bg-[#007fff] hover:text-white hover:transition-transform">Get started</button>
+				<button  
+				onClick={onSignin}
+				className="px-8 py-3 text-lg font-semibold rounded border border-b-2 shadow-md text-[#007fff] hover:bg-[#007fff] hover:text-white hover:transition-transform">
+					Get started
+				</button>
+				<div id='sign-in-button'></div>
 			</div>
 		</div>
 		<div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">

@@ -1,11 +1,13 @@
 import '@/styles/globals.css'
 // import  { AppProps } from 'next/app';
 // import Header from '@/components/Header';
-import NavBar from '@/components/NavBar';
+import NavBar from '../components/NavBar';
+import AuthProvider from '../backend/useAuth';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <AuthProvider>
         {/* <Header /> */}
         <NavBar />
         <div className="font-montserrat min-h-[calc(100vh-90px)]">
@@ -23,6 +25,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </div>
         {/* <Footer /> */}
+      </AuthProvider>
     </>
   );
 }
