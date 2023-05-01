@@ -3,12 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_APIKEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECTID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
-  appId: process.env.NEXT_PUBLIC_APPID,
+  apiKey: "AIzaSyAlc-rgze3tiy89BgQm_XynVAt9fgCQNpQ",
+  authDomain: "rail-seatify.firebaseapp.com",
+  projectId: "rail-seatify",
+  storageBucket: "rail-seatify.appspot.com",
+  messagingSenderId: "1073926433562",
+  appId: "1:1073926433562:web:20c818b24aef1b70721aa3",
+  measurementId: "G-ZTNFHVEDN3"
 };
 
 const app = initializeApp(firebaseConfig);
