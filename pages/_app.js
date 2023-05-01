@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 // import  { AppProps } from 'next/app';
 // import Header from '@/components/Header';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navbar';
 import AuthProvider from '../backend/useAuth';
 
 function MyApp({ Component, pageProps }) {
