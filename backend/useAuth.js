@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
+import { notification } from "antd";
 // import {
 //   doc,
 //   setDoc,
@@ -11,7 +12,7 @@ import { createContext } from "react";
 //   getDocs,
 //   query,
 // } from "firebase/firestore";
-// import Router, { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   RecaptchaVerifier,
   onAuthStateChanged,
@@ -25,7 +26,8 @@ import { useState } from "react";
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-//   const [api, contextHolder] = notification.useNotification();
+  const router = useRouter();
+  const [api, contextHolder] = notification.useNotification();
   const [user, setUser] = useState([]);
   const [userDb, setUserDb] = useState(typeof window !== "undefined" && JSON.parse(localStorage.getItem("userDb")));
 
@@ -69,7 +71,8 @@ const AuthProvider = ({ children }) => {
         },
         defaultCountry: "IN",
     },auth);
-    const phoneNumber = "+919962444054";
+    const phoneNumber = JSON.parse(localStorage.getItem("userPhn"));
+    // const phoneNumber = "+919962444054";
     const appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
         .then((confirmationResult) => {
@@ -83,7 +86,7 @@ const AuthProvider = ({ children }) => {
                     console.log(user);
                     setUser(user);
                     localStorage.setItem("user", JSON.stringify(user));
-                    // Router.push("/dashboard");
+                    router.push("/dashboard");
                 })
                 .catch((error) => {
                     console.log(error);
@@ -109,10 +112,10 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, onSignin, onSignout, userDb, setUserDb }}
+      value={{ user, onSignin, onSignout,api, userDb, setUserDb }}
     >
       {children}
-      {/* {contextHolder} */}
+      {contextHolder}
     </AuthContext.Provider>
   );
 };
