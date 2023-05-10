@@ -2,16 +2,11 @@ import React, { useContext } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
 import { notification } from "antd";
-// import {
-//   doc,
-//   setDoc,
-//   // getDoc,
-//   // getCountFromServer,
-//   collection,
-//   where,
-//   getDocs,
-//   query,
-// } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc
+} from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import {
   RecaptchaVerifier,
@@ -30,6 +25,8 @@ const AuthProvider = ({ children }) => {
   const [api, contextHolder] = notification.useNotification();
   const [user, setUser] = useState([]);
   const [userDb, setUserDb] = useState(typeof window !== "undefined" && JSON.parse(localStorage.getItem("userDb")));
+
+  
 
   
 
@@ -83,18 +80,39 @@ const AuthProvider = ({ children }) => {
                 .then((result) => {
                     const user = result.user;
                     console.log("User is signed in");
-                    console.log(user);
-                    setUser(user);
-                    localStorage.setItem("user", JSON.stringify(user));
-                    router.push("/dashboard");
+                    setDoc(
+                      doc(db, "users", user?.uid),
+                      {
+                        uid: user?.uid,
+                        phoneNumber: user?.phoneNumber,
+                      },
+                      { merge: true }
+
+                    ).then( async () => {
+                      localStorage.setItem(
+                        "userDb", 
+                        JSON.stringify({
+                          uid: user?.uid,
+                          phoneNumber: user?.phoneNumber,
+                        })
+                        );
+                        setUserDb({
+                          uid: user?.uid,
+                          phoneNumber: user?.phoneNumber,
+                        })
+                        const docRef = doc(db, "users", user?.uid);
+                        const docSnap = await getDoc(docRef);
+                        const checkUser = docSnap.data();
+                        if (checkUser.name) {
+                          router.push(`/dashboard/${userDb?.uid}`);
+                        } else {
+                          router.push("/register");
+                        }
+                      }).catch((error) => alert(error.message));
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch((error) => alert(error.message));
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch((error) => alert(error.message));
     };
 
 
@@ -103,7 +121,10 @@ const AuthProvider = ({ children }) => {
     .then(() => {
         console.log("User signed out");
         setUser(null);
+        localStorage.removeItem("userPhn");
         localStorage.removeItem("userDb");
+        localStorage.removeItem("user");
+        router.push("/");
       })
       .catch(() => {
         alert("Error logging out");

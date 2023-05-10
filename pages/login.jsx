@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {use, useRef, useState} from 'react';
 import { useAuth } from '../backend/useAuth';
 
 function Login() {
@@ -9,22 +9,21 @@ function Login() {
           description: "Please enter a valid phone number",
         });
       };
-    // const [userPhn, setUserPhn] = useState(typeof window !== "undefined" && JSON.parse(localStorage.getItem("userPhn")));
     const { onSignin,api } = useAuth();
     const formRef = useRef();
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const data = new FormData(formRef.current);
         const phoneNo = '+91' + formRef.current[0]?.value
         if (phoneNo.length !== 13) {
             FormVaildToast("error");}
         else{
         localStorage.setItem("userPhn", JSON.stringify(phoneNo));
-        onSignin();}
+        onSignin();
+      }
 
     }
-
   return (
+  
     <section className='h-screen flex justify-center items-center w-screen'>
         <div className='h-4/6 md:w-96 w-5/6 bg-white rounded-lg shadow-lg flex flex-col justify-center items-center'>
             <h1 className='text-2xl font-bold text-[#0067cf]'>Verify Your Phone No</h1>
