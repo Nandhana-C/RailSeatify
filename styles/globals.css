@@ -1,23 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&display=swap');@tailwind base;
 @tailwind base;
+*::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  height: 6px;
+  width: 6px;
+  border-radius: 10px;
+}
 @tailwind components;
 @tailwind utilities;
 
 
-::-webkit-scrollbar {
-  width: 2px;
-}
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -34,6 +32,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: 'Wix Madefor Display', sans-serif;
   background: linear-gradient(
       to bottom,
       transparent,

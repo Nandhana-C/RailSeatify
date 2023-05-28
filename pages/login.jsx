@@ -1,7 +1,11 @@
 import React, {use, useRef, useState} from 'react';
 import { useAuth } from '../backend/useAuth';
+import Image from 'next/image';
+import Phone from '../assets/phone.svg';
 
 function Login() {
+
+  const [loading, setLoading] = useState(false)
 
     const FormVaildToast = (type) => {
         api[type]({
@@ -12,11 +16,15 @@ function Login() {
     const { onSignin,api } = useAuth();
     const formRef = useRef();
     const handleSubmit = (e) => {
+        setLoading(true)
         e.preventDefault();
         const phoneNo = '+91' + formRef.current[0]?.value
         if (phoneNo.length !== 13) {
-            FormVaildToast("error");}
+            FormVaildToast("error");
+            setLoading(false);
+        }
         else{
+        setLoading(false);
         localStorage.setItem("userPhn", JSON.stringify(phoneNo));
         onSignin();
       }
@@ -24,16 +32,22 @@ function Login() {
     }
   return (
   
-    <section className='h-screen flex justify-center items-center w-screen'>
-        <div className='h-4/6 md:w-96 w-5/6 bg-white rounded-lg shadow-lg flex flex-col justify-center items-center'>
-            <h1 className='text-2xl font-bold text-[#0067cf]'>Verify Your Phone No</h1>
+    <section className='h-[calc(100vh-80px)] flex justify-center items-center w-screen'>
+        <div className='h-fit md:w-96 w-5/6 bg-white rounded-lg shadow flex flex-col justify-center items-center p-4'>
+            <Image src={Phone} alt={"phone"} className=''/>
+            <div className='flex flex-col gap-4 mt-4 items-center text-center'>
+              <h1 className='text-2xl font-semibold'>Enter your phone number</h1>
+              <p className='text-gray-500 text-sm w-72'>We will send a code via SMS text message to your phone number.</p>
+            </div>
             <form
             ref={formRef}
             onSubmit={(e) => handleSubmit(e)} 
             className='flex flex-col justify-center items-center w-5/6 m-10'>
-                <input  type="tel" placeholder='+91 XXXXX-XXXXX' className='w-full border-2 border-[#0067cf] rounded-lg p-2 my-2 focus:outline-none focus:ring-2 focus:ring-[#0067cf]' />
-                <button className='w-full bg-[#0067cf] text-white cursor-pointer rounded-lg p-2 my-2 focus:outline-none focus:ring-2 focus:ring-[#0067cf] mt-5'>Send OTP</button>
+              <div className='flex flex-col w-full gap-4'>
+                <input  type="tel" placeholder='+91 XXXXX-XXXXX' className='w-full outline outline-[#0067cf] rounded-md px-4 py-4 focus:outline-2' />
+                <button className={`${loading ? "bg-gray-500" : "bg-[#0067cf]"} w-full  text-white cursor-pointer rounded-md px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#0067cf]`}>{loading ? "Sending.." : "Send"}</button>
                 <div id='sign-in-button'></div>
+              </div>
             </form>
         </div>
     </section>

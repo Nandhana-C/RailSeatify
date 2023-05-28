@@ -22,7 +22,7 @@ const router = useRouter();
 			<div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
 				<button  
 				onClick={() => router.push('/login')}
-				className="px-8 py-3 text-lg font-semibold rounded border border-b-2 shadow-md text-[#007fff] hover:bg-[#007fff] hover:text-white hover:transition-transform">
+				className="px-8 py-3 text-lg font-semibold rounded border border-b-2 shadow text-[#007fff] hover:bg-[#007fff] hover:text-white transition-all duration-100">
 					Get started
 				</button>
 				

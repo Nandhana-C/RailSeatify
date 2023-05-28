@@ -8,6 +8,7 @@ export default function Home() {
       <Head>
         <title>RailSeatify</title>
         <link rel="icon" href="/favicon.ico" />
+        <script src="https://kit.fontawesome.com/3faf7fd3d7.js" crossorigin="anonymous" async ></script>
       </Head>
       <main className="w-full">
         {/* <div className="flex flex-col items-center justify-center w-full  h-full">
