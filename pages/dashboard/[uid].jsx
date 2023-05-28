@@ -137,7 +137,7 @@ function IdDashboard() {
             </div>
           </div>
           {/* trains */}
-          <div className='w-full grid grid-cols-1 gap-4 overflow-y-scroll pr-4'>
+          <div className='w-full grid grid-cols-1 gap-4 overflow-y-scroll no-scrollbar'>
             {
               trains.map((train, index) => {
                 return(
@@ -184,12 +184,15 @@ function IdDashboard() {
                       <div className='flex gap-4 pb-2 overflow-x-scroll'>
                         {
                           [1,2,3,4,5,6,7,8].map((item, index) => (
-                          <div key={index} className='bg-slate-50 min-w-fit px-4 text-sm font-medium border border-slate-200 p-2 rounded-md'>
+                          <div key={index} className='cursor-pointer bg-slate-50 min-w-fit px-4 text-sm font-medium border border-slate-200 p-2 rounded-md'>
                             <h1>Sun 28 May</h1>
                             <p className='text-red-500'>WL 9</p>
                           </div>
                           ))
                         }
+                      </div>
+                      <div>
+                        <button  className='px-4 py-2 w-fit cursor-pointer flex justify-center items-center bg-[#0067cf] text-white border rounded-md'>Book</button>
                       </div>
                     </div>
                   </div>
