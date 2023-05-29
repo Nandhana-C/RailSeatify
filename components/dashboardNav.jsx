@@ -4,7 +4,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Link from 'next/link';
 
 
-const DashboardNav = () => {
+const Dashboardnav = () => {
   return (
     <section className="w-full px-8 py-4 border-b flex justify-between items-center">
     <div className="md:flex hidden gap-8 font-semibold text-sm">
@@ -29,4 +29,4 @@ const DashboardNav = () => {
   )
 }
 
-export default DashboardNav
+export default Dashboardnav

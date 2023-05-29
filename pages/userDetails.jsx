@@ -1,5 +1,5 @@
 import React, {use, useState} from 'react';
-import Nav from '../components/dashboardNav';
+import Nav from '../components/dashboardnav';
 
 const UserDetails = () => {
 

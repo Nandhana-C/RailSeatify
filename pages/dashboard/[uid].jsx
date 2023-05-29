@@ -14,7 +14,7 @@ import TrainIcon from '@mui/icons-material/Train';
 import EastIcon from '@mui/icons-material/East';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import {useRouter} from 'next/router';
-import Nav from '../../components/dashboardNav';
+import Nav from '../../components/dashboardnav';
 
 function IdDashboard() {
 

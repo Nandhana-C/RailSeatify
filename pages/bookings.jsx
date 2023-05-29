@@ -2,7 +2,7 @@ import React from 'react'
 import TrainIcon from '@mui/icons-material/Train';
 import EastIcon from '@mui/icons-material/East';
 import IosShareIcon from '@mui/icons-material/IosShare';
-import Nav from '../components/dashboardNav';
+import Nav from '../components/dashboardnav';
 
 const Bookings = () => {
 
