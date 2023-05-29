@@ -13,8 +13,12 @@ import { trains } from '../../assets/trains';
 import TrainIcon from '@mui/icons-material/Train';
 import EastIcon from '@mui/icons-material/East';
 import IosShareIcon from '@mui/icons-material/IosShare';
+import {useRouter} from 'next/router';
+import Nav from '../../components/dashboardNav';
 
 function IdDashboard() {
+
+  const router = useRouter();
 
   const getDetails = async () => {
       const options = {
@@ -42,26 +46,7 @@ function IdDashboard() {
   return (
     <section className="w-full h-screen bg-white">
       {/* header section */}
-      <section className="w-full px-8 py-4 border-b flex justify-between items-center">
-        <div className="md:flex hidden gap-8 font-semibold text-sm">
-          <h1 className="cursor-pointer text-black">Home</h1>
-          <h1 className="cursor-pointer text-gray-500">Train Status</h1>
-          <h1 className="cursor-pointer text-gray-500">Bookings</h1>
-        </div>
-        <div className='flex gap-4 items-center'>
-          <div className='border-r flex gap-4'>
-            <div className='w-8 h-8 bg-gray-300/20 border rounded-full flex justify-center items-center'>
-              <SettingsIcon className='text-gray-600' fontSize='small'/>
-            </div>
-            <div className='mr-4 w-8 h-8 bg-gray-300/20 border rounded-full flex justify-center items-center'>
-              <NotificationsIcon className='text-gray-600' fontSize='small'/>
-            </div>
-          </div>
-          <div>
-            <h1 className="font-bold text-sm">Jayanth Srinivasan</h1>
-          </div>
-        </div>
-      </section>
+      <Nav/>
       {/* body section */}
       <section className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 md:px-16 bg-slate-100">
           <div className='w-full h-fit bg-white grid grid-cols-1 md:grid-cols-2 gap-4 rounded-md p-4'>
@@ -192,7 +177,7 @@ function IdDashboard() {
                         }
                       </div>
                       <div>
-                        <button  className='px-4 py-2 w-fit cursor-pointer flex justify-center items-center bg-[#0067cf] text-white border rounded-md'>Book</button>
+                        <button onClick={() => router.push('/userDetails')} className='px-4 py-2 w-fit cursor-pointer flex justify-center items-center bg-[#0067cf] text-white border rounded-md'>Book</button>
                       </div>
                     </div>
                   </div>
